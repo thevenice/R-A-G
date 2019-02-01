@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import Link from "./Link";
-import gql from "graphql-tag";
+// import gql from "graphql-tag";
+import { gql } from "apollo-boost";
 import { Query } from "react-apollo";
 
 const FEED_QUERY = gql`
-type Query  {
+  {
     feed {
       links {
         id
-        
+        description
+        url
+        createdAt
       }
     }
   }
@@ -31,6 +34,7 @@ class LinkList extends Component {
               {linksToRender.map(link => (
                 <Link key={link.id} link={link} />
               ))}
+              {console.log(linksToRender)}
             </div>
           );
         }}
